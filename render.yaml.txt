@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: daily-news-agent
+    runtime: python
+    buildCommand: ""
+    startCommand: python news_website.py
+    envVars:
+      - key: PORT
+        value: 10000
