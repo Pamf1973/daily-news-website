@@ -89,8 +89,8 @@ def home():
                 <h2>{{ categories[category] }}</h2>
                 {% for headline in headlines %}
                     <div class="headline">
-  • <a href="{{ headline.url }}" target="_blank">{{ headline.title }} ({{ headline.source }})</a>
-</div>
+                     • <a href="{{ headline.url }}" target="_blank">{{ headline.title }} ({{ headline.source }})</a>
+                    </div>
                 {% endfor %}
             </div>
         {% endfor %}
