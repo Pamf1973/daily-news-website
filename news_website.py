@@ -21,7 +21,11 @@ def fetch_headlines(category, country='us', max_articles=5):
     if not articles:
         return [f"No articles found for {CATEGORIES.get(category, category)}."]
 
-    return [f"{article['title']} ({article['source']['name']})" for article in articles]
+   return [{
+    "title": article["title"],
+    "source": article["source"]["name"],
+    "url": article["url"]
+} for article in articles]
 
 @app.route("/")
 def home():
@@ -84,7 +88,9 @@ def home():
             <div class="section">
                 <h2>{{ categories[category] }}</h2>
                 {% for headline in headlines %}
-                    <div class="headline">• {{ headline }}</div>
+                    <div class="headline">
+  • <a href="{{ headline.url }}" target="_blank">{{ headline.title }} ({{ headline.source }})</a>
+</div>
                 {% endfor %}
             </div>
         {% endfor %}
