@@ -21,11 +21,17 @@ def fetch_headlines(category, country='us', max_articles=5):
     if not articles:
         return [f"No articles found for {CATEGORIES.get(category, category)}."]
 
-   return [{
-       "title": article["title"],
-       "source": article["source"]["name"],
-       "url": article["url"]
-   } for article in articles]
+   def fetch_headlines(category, country='us', max_articles=5):
+    url = f"https://newsapi.org/v2/top-headlines?category={category}&country={country}&apiKey={API_KEY}"
+    response = requests.get(url)
+    articles = response.json().get("articles", [])[:max_articles]
+
+    return [{
+        "title": article["title"],
+        "source": article["source"]["name"],
+        "url": article["url"]
+    } for article in articles]
+
 
 
 @app.route("/")
