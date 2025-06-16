@@ -22,9 +22,9 @@ def fetch_headlines(category, country='us', max_articles=5):
         return [f"No articles found for {CATEGORIES.get(category, category)}."]
 
    return [{
-    "title": article["title"],
-    "source": article["source"]["name"],
-    "url": article["url"]
+       "title": article["title"],
+       "source": article["source"]["name"], 
+       "url": article["url"]   
    } for article in articles]
 
 @app.route("/")
