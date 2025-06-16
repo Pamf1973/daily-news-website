@@ -16,7 +16,29 @@ CATEGORIES = {
 def fetch_headlines(category, country='us', max_articles=5):
     url = f"https://newsapi.org/v2/top-headlines?category={category}&country={country}&apiKey={API_KEY}"
     response = requests.get(url)
-    articles = response.json().get("articles", [])[:max_articles]
+    articles = response.json().get("articles", [])
+
+    seen_titles = set()
+    unique_articles = []
+
+    for article in articles:
+        title = article["title"]
+        if title not in seen_titles:
+            seen_titles.add(title)
+            unique_articles.append({
+                "title": title,
+                "source": article["source"]["name"],
+                "url": article["url"]
+            })
+
+        if len(unique_articles) >= max_articles:
+            break
+
+    if not unique_articles:
+        return [f"No unique articles found for {CATEGORIES.get(category, category)}."]
+    
+    return unique_articles
+
 
     if not articles:
         return [f"No articles found for {CATEGORIES.get(category, category)}."]
