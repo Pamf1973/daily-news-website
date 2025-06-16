@@ -25,7 +25,7 @@ def fetch_headlines(category, country='us', max_articles=5):
     "title": article["title"],
     "source": article["source"]["name"],
     "url": article["url"]
-} for article in articles]
+   } for article in articles]
 
 @app.route("/")
 def home():
