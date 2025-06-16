@@ -22,9 +22,9 @@ def fetch_headlines(category, country='us', max_articles=5):
         return [f"No articles found for {CATEGORIES.get(category, category)}."]
 
    def fetch_headlines(category, country='us', max_articles=5):
-    url = f"https://newsapi.org/v2/top-headlines?category={category}&country={country}&apiKey={API_KEY}"
-    response = requests.get(url)
-    articles = response.json().get("articles", [])[:max_articles]
+       url = f"https://newsapi.org/v2/top-headlines?category={category}&country={country}&apiKey={API_KEY}"
+       response = requests.get(url)
+       articles = response.json().get("articles", [])[:max_articles]
 
     return [{
         "title": article["title"],
