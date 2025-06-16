@@ -19,7 +19,7 @@ def fetch_headlines(category, country='us', max_articles=5):
     articles = response.json().get("articles", [])[:max_articles]
 
 if not articles:
-        return [f"No articles found for {CATEGORIES.get(category, category)}."]
+        return    [f"No articles found for {CATEGORIES.get(category, category)}."]
 
 
 return [{
